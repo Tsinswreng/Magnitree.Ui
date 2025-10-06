@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Magnitree.Ui.Infra;
 
 namespace Magnitree.Ui.ViewModels;
 

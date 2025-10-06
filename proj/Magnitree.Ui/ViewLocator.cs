@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Magnitree.Ui.ViewModels;
+using Magnitree.Ui.Infra;
 
 namespace Magnitree.Ui;
 

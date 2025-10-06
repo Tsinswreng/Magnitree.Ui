@@ -10,6 +10,7 @@ using Magnitree.Ui.ViewModels;
 using Magnitree.Ui.Views;
 using Avalonia.Themes.Fluent;
 using Microsoft.Extensions.DependencyInjection;
+using Avalonia.Controls;
 
 public partial class App : Application {
 
@@ -40,9 +41,7 @@ public partial class App : Application {
 			// Avoid duplicate validations from both Avalonia and the CommunityToolkit.
 			// More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
 			DisableAvaloniaDataAnnotationValidation();
-			desktop.MainWindow = new MainWindow {
-				DataContext = new MainViewModel()
-			};
+			desktop.MainWindow = MkWindow();
 		} else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform) {
 			singleViewPlatform.MainView = new MainView {
 				DataContext = new MainViewModel()
@@ -50,6 +49,15 @@ public partial class App : Application {
 		}
 
 		base.OnFrameworkInitializationCompleted();
+	}
+
+	Window MkWindow(){
+		var R = new MainWindow {
+			DataContext = new MainViewModel(),
+			Width = 400,
+			Height = 700
+		};
+		return R;
 	}
 
 	private void DisableAvaloniaDataAnnotationValidation() {

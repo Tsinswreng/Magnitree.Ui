@@ -12,6 +12,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="../../../Magnitree.Core/proj/Magnitree.Core/Magnitree.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="../../../Tsinswreng.AvlnTools/proj/Tsinswreng.AvlnTools/Tsinswreng.AvlnTools.csproj" />
 	</ItemGroup>
 

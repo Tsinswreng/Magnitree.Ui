@@ -1,3 +1,5 @@
+namespace Magnitree.Ui;
+
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -6,12 +8,31 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using Magnitree.Ui.ViewModels;
 using Magnitree.Ui.Views;
-
-namespace Magnitree.Ui;
+using Avalonia.Themes.Fluent;
+using Microsoft.Extensions.DependencyInjection;
 
 public partial class App : Application {
+
+	public static T GetSvc<T>()
+		where T : class
+	{
+		System.Console.Write("GetSvc: "+typeof(T));//t
+		return App.SvcProvider.GetRequiredService<T>();
+	}
+
+	public static IServiceProvider SvcProvider { get; private set; } = null!;
+	public static void SetSvcProvider(IServiceProvider SvcProvider){
+		App.SvcProvider = SvcProvider;
+	}
+
+
 	public override void Initialize() {
-		AvaloniaXamlLoader.Load(this);
+		Styles.Add(new FluentTheme());
+#if DEBUG
+		if(OperatingSystem.IsWindows()){
+			this.AttachDevTools();
+		}
+#endif
 	}
 
 	public override void OnFrameworkInitializationCompleted() {

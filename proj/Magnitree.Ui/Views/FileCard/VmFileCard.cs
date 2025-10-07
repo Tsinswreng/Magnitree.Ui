@@ -7,6 +7,9 @@ using Magnitree.Ui.Infra;
 using Ctx = VmFileCard;
 public partial class VmFileCard: ViewModelBase{
 	//蔿從構造函數依賴注入、故以靜態工廠代無參構造器
+
+
+
 	protected VmFileCard(){}
 	public static Ctx Mk(){
 		return new Ctx();
@@ -14,6 +17,7 @@ public partial class VmFileCard: ViewModelBase{
 
 	public static ObservableCollection<Ctx> Samples = [];
 	static VmFileCard(){
+
 		#if DEBUG
 		{
 			var o = new Ctx();
@@ -28,6 +32,13 @@ public partial class VmFileCard: ViewModelBase{
 			o.PathType = EPathType.Dir;
 		}
 		#endif
+	}
+
+	public nil FromPathInfo(IPathInfo PathInfo){
+		this.Bo = PathInfo;
+		Name = Bo.GetLastSeg();
+		PathType = PathInfo.Type;
+		return NIL;
 	}
 
 	protected str _Name = "";

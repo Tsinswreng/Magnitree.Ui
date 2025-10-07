@@ -1,8 +1,11 @@
-﻿using System;
+﻿namespace Magnitree.Ui.Desktop;
+
+using System;
 using Avalonia;
+using Magnitree.Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Magnitree.Ui.Desktop;
+
 
 sealed class Program {
 	// Initialization code. Don't use any Avalonia, third-party APIs or any
@@ -11,6 +14,10 @@ sealed class Program {
 	[STAThread]
 	public static void Main(string[] args){
 		var svc = new ServiceCollection();
+		svc
+			.SetupCore()
+			.SetupUi()
+		;
 		var svcProvider = svc.BuildServiceProvider();
 
 		BuildAvaloniaApp()

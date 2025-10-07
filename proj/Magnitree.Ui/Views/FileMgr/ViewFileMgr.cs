@@ -2,6 +2,7 @@ namespace Magnitree.Ui.Views.FileMgr;
 
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using Avalonia.Media;
 using Magnitree.Ui.Infra;
 using Magnitree.Ui.Views.FileCard;
 using Tsinswreng.AvlnTools.Dsl;
@@ -37,7 +38,7 @@ public partial class ViewFileMgr
 		this.ContentInit(Root.Grid, o=>{
 			o.RowDefinitions.AddRange([
 				RowDef(1, GUT.Auto),
-				RowDef(1, GUT.Auto),
+				RowDef(1, GUT.Star),
 			]);
 		});
 		var PathGrid = new AutoGrid(IsRow:false);
@@ -79,6 +80,15 @@ public partial class ViewFileMgr
 		});
 		R.ItemTemplate = new FuncDataTemplate<VmFileCard>((vm,b)=>{
 			var R = new Button();
+			R.Styles.Add(new Style().NoCornerRadius().NoMargin().NoPadding());
+			R.Styles.Add(new Style().Set(
+				Button.BackgroundProperty
+				,Brushes.Transparent
+			).Set(
+				HorizontalAlignmentProperty
+				,HAlign.Stretch
+			));
+
 			R.ContentInit(new ViewFileCard(), o=>{
 				o.DataContext = vm;
 			});

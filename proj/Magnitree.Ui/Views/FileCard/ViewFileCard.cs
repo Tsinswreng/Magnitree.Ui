@@ -35,11 +35,15 @@ public partial class ViewFileCard
 		this.ContentInit(Root.Grid, o=>{
 			o.ColumnDefinitions.AddRange([
 				ColDef(1, GUT.Star),
-				ColDef(1, GUT.Auto),
+				ColDef(14, GUT.Star),
 			]);
 		});
 		Root.AddInit(_TextBlock(), o=>{
-			o.Text = "📁";
+			o.Bind(
+				TextBlock.TextProperty,
+				CBE.Mk<Ctx>(x=>x.Icon)
+			);
+
 		});
 		Root.AddInit(_TextBlock(), o=>{
 			o.Bind(

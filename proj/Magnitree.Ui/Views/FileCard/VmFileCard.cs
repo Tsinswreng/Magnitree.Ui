@@ -38,6 +38,11 @@ public partial class VmFileCard: ViewModelBase{
 		this.Bo = PathInfo;
 		Name = Bo.GetLastSeg();
 		PathType = PathInfo.Type;
+		if(PathType == EPathType.File){
+			Icon = "📄";
+		}else{
+			Icon = "📁";
+		}
 		return NIL;
 	}
 
@@ -51,6 +56,12 @@ public partial class VmFileCard: ViewModelBase{
 	public EPathType PathType{
 		get{return _PathType;}
 		set{SetProperty(ref _PathType, value);}
+	}
+
+	protected obj _Icon = "📁";
+	public obj Icon{
+		get{return _Icon;}
+		set{SetProperty(ref _Icon, value);}
 	}
 
 	protected IPathInfo? _Bo;

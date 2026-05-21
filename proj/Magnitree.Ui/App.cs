@@ -37,6 +37,7 @@ public partial class App : Application {
 	public override void OnFrameworkInitializationCompleted() {
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
 			desktop.MainWindow = MkWindow();
+			new WebViewDemoWindow().Show();
 		} else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform) {
 			singleViewPlatform.MainView = new MainView {
 				DataContext = new MainViewModel()

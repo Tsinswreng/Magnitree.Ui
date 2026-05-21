@@ -1,4 +1,5 @@
 //[2025-06-26T13:37:22.811+08:00_W26-4]
+global using System.Linq;
 global using BindingMode = Avalonia.Data.BindingMode;
 
 #region Grid
@@ -10,4 +11,3 @@ global using Style = Avalonia.Styling.Style;
 global using TxtAlign = Avalonia.Media.TextAlignment;
 global using VAlign = Avalonia.Layout.VerticalAlignment;
 global using HAlign = Avalonia.Layout.HorizontalAlignment;
-global using static Tsinswreng.AvlnTools.Dsl.DslFactory;

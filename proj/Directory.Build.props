@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -16,10 +16,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="../../../Tsinswreng.AvlnTools/proj/Tsinswreng.AvlnTools/Tsinswreng.AvlnTools.csproj" />
+		<!-- <ProjectReference Include="../../../Tsinswreng.AvlnTools/proj/Tsinswreng.AvlnTools/Tsinswreng.AvlnTools.csproj" /> -->
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Tsinswreng.Avln.Dsl" />
+		<PackageReference Include="Tsinswreng.Avln.Grid" />
+		<PackageReference Include="Tsinswreng.Avln.Navi" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection"/>
 		<PackageReference Include="System.Linq.Async"/>
 	</ItemGroup>

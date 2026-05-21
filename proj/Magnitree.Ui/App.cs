@@ -2,8 +2,6 @@ namespace Magnitree.Ui;
 
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
-using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Magnitree.Ui.ViewModels;
@@ -31,16 +29,13 @@ public partial class App : Application {
 		Styles.Add(new FluentTheme());
 #if DEBUG
 		if(OperatingSystem.IsWindows()){
-			this.AttachDevTools();
+			this.AttachDeveloperTools();
 		}
 #endif
 	}
 
 	public override void OnFrameworkInitializationCompleted() {
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-			// Avoid duplicate validations from both Avalonia and the CommunityToolkit.
-			// More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
-			DisableAvaloniaDataAnnotationValidation();
 			desktop.MainWindow = MkWindow();
 		} else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform) {
 			singleViewPlatform.MainView = new MainView {
@@ -58,16 +53,5 @@ public partial class App : Application {
 			Height = 700
 		};
 		return R;
-	}
-
-	private void DisableAvaloniaDataAnnotationValidation() {
-		// Get an array of plugins to remove
-		var dataValidationPluginsToRemove =
-			BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
-
-		// remove each entry found
-		foreach (var plugin in dataValidationPluginsToRemove) {
-			BindingPlugins.DataValidators.Remove(plugin);
-		}
 	}
 }

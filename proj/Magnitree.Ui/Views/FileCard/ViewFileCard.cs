@@ -1,9 +1,8 @@
 namespace Magnitree.Ui.Views.FileCard;
 
 using Avalonia.Controls;
+using Avalonia.Data;
 using Magnitree.Ui.Infra;
-using Tsinswreng.AvlnTools.Dsl;
-using Tsinswreng.AvlnTools.Tools;
 using Ctx = VmFileCard;
 public partial class ViewFileCard
 	:AppViewBase
@@ -30,29 +29,28 @@ public partial class ViewFileCard
 	protected nil Style(){
 		return NIL;
 	}
-	AutoGrid Root = new(IsRow: false);
+	Grid Root = new();
 	protected nil Render(){
-		this.ContentInit(Root.Grid, o=>{
-			o.ColumnDefinitions.AddRange([
-				ColDef(1, GUT.Star),
-				ColDef(14, GUT.Star),
-			]);
-		});
-		Root.AddInit(_TextBlock(), o=>{
-			o.Bind(
-				TextBlock.TextProperty,
-				CBE.Mk<Ctx>(x=>x.Icon)
-			);
+		Root.ColumnDefinitions.AddRange([
+			new ColDef(1, GUT.Star),
+			new ColDef(14, GUT.Star),
+		]);
 
-		});
-		Root.AddInit(_TextBlock(), o=>{
-			o.Bind(
-				TextBlock.TextProperty,
-				CBE.Mk<Ctx>(x=>x.Name)
-			);
-		});
+		var icon = new TextBlock();
+		icon.Bind(TextBlock.TextProperty, new Binding(nameof(Ctx.Icon)));
+		Grid.SetColumn(icon, 0);
+
+		var name = new TextBlock();
+		name.Bind(TextBlock.TextProperty, new Binding(nameof(Ctx.Name)));
+		Grid.SetColumn(name, 1);
+
+		Root.Children.Add(icon);
+		Root.Children.Add(name);
+		Content = Root;
 		return NIL;
 	}
 
 
 }
+
+
